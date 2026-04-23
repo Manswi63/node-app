@@ -3,14 +3,19 @@ version: 0.2
 phases:
   install:
     commands:
-      - npm install -g pm2
-      - npm install
-
+      - echo Installing...
+  
   build:
     commands:
-      - echo Build done
+      - echo Build phase
 
   post_build:
     commands:
-      - pm2 stop all || true
-      - pm2 start app.js
+      - echo Deploying to EC2
+      - ssh -o StrictHostKeyChecking=no -i key.pem ubuntu@3.110.220.138 "
+          cd /home/ubuntu/node-app &&
+          git pull &&
+          npm install &&
+          pm2 delete all || true &&
+          pm2 start app.js
+        "
