@@ -5,4 +5,4 @@ app.get("/", (req, res) => {
   res.send("CI/CD Working 🚀");
 });
 
-app.listen(3000, "0.0.0.0");
+app.listen(80, "0.0.0.0");
