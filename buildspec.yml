@@ -1,8 +1,0 @@
-phases:
-  install:
-    commands:
-      - npm install -g pm2
-
-  post_build:
-    commands:
-      - pm2 start app.js || true
